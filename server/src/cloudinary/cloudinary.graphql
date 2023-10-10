@@ -1,0 +1,41 @@
+type Image {
+  public_id: ID
+  version: Int
+  signature: String
+  width: Int
+  height: Int
+  format: String
+  resource_type: String
+  created_at: String
+  tags: [String]
+  pages: Int
+  bytes: Int
+  type: String
+  etag: String
+  placeholder: Boolean
+  url: String
+  secure_url: String
+  access_mode: String
+  original_filename: String
+  moderation: [String]
+  access_control: [String]
+}
+
+input UploadImageInput {
+  base64EncodedImage: String
+  type: String
+}
+
+input UploadImagesInput {
+  base64EncodedImages: [String]
+  type: String
+}
+
+type Query {
+  findImage(imageId: ID!): Image!
+}
+
+type Mutation {
+  uploadImage(uploadImageInput: UploadImageInput!): Image!
+  uploadImages(uploadImagesInput: UploadImagesInput!): [Image!]!
+}

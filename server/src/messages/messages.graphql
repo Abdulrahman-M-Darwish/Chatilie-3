@@ -1,0 +1,33 @@
+type Message {
+  id: ID!
+  text: String
+  mediasUrl: [String!]
+  author: User!
+  authorId: ID!
+  createdAt: Date!
+  updatedAt: ID!
+  follows: Follower
+  followsFollowerId: String
+  followsFollowingId: String
+}
+
+input CreateMessageInput {
+  text: String
+  mediaUrl: [String!]
+  followerId: String
+}
+
+type Query {
+  messages(followId: ID): [Message!]
+  message(chatId: ID): Message
+}
+
+type Mutation {
+  createMessage(createMessageInput: CreateMessageInput): Message!
+  updateMessage(id: ID!, updateMessageInput: CreateMessageInput): Message!
+  removeMessage(id: ID!): Message!
+}
+
+type Subscription {
+  messageCreated: Message
+}

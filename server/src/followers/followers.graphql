@@ -1,0 +1,19 @@
+type Follower {
+  id: ID!
+  follower: User!
+  followerId: ID!
+  following: User!
+  followingId: ID!
+  messages: [Message]!
+  createdAt: Date!
+}
+
+type Query {
+  followers(id: ID!): [Follower!]
+  follower(followerId: ID!): Follower
+}
+
+type Mutation {
+  createFollower(followingId: ID!): Follower
+  removeFollower(followerId: ID!): Follower
+}

@@ -1,0 +1,50 @@
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum Relationship {
+  MARRIED
+  SINGLE
+}
+
+type Profile {
+  id: ID!
+  cover: String
+  country: String
+  bio: String
+  gender: Gender
+  livesIn: String
+  education: String
+  worksAt: String
+  relationship: Relationship
+  certificates: [String!]!
+  hobbies: [String!]!
+  likes: Int
+  friends: Int
+  reputation: Int
+  user: User!
+  userId: String!
+}
+
+input UpdateProfileInput {
+  cover: String
+  country: String
+  bio: String
+  hobbies: [String!]
+  livesIn: String
+  education: String
+  worksAt: String
+  relationship: Relationship
+  certificates: [String!]
+}
+
+type Query {
+  profile(id: ID!): Profile
+}
+
+type Mutation {
+  createProfile(id: ID!): Profile!
+  updateProfile(id: ID!, updateProfileInput: UpdateProfileInput!): Profile!
+  removeProfile(id: ID!): Profile
+}

@@ -1,0 +1,16 @@
+type Comment {
+  commenter: Post
+  commenterId: String
+  commenting: Post
+  commentingId: String
+}
+
+type Query {
+  comments(id: ID!): [Comment!]
+  comment(commentId: ID!): Comment
+}
+
+type Mutation {
+  createComment(followingId: ID!): Comment
+  removeComment(commentId: ID!): Comment
+}

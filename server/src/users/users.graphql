@@ -1,0 +1,36 @@
+scalar Date
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  isActive: Boolean!
+  avatar: String!
+  birthDate: Date!
+  username: String!
+  following: [Follower!]
+  followedBy: [Follower!]
+  posts: [Post!]
+  messages: [Message!]
+  profile: Profile
+  # notifications: [Notification!]
+  # reacts: [React!]
+  # bookmarks: [Bookmark!]
+}
+
+type Query {
+  users: [User!]
+  user(id: ID!): User!
+}
+
+input UpdateUserInput {
+  isActive: Boolean
+  avatar: String
+  username: String
+}
+
+type Mutation {
+  createUser(createUserInput: SignupInput): User!
+  updateUser(updateUserInput: UpdateUserInput): User!
+  removeUser(id: ID!): User!
+}

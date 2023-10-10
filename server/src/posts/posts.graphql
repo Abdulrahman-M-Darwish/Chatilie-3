@@ -1,0 +1,40 @@
+enum Privacy {
+  PRIVATE
+  FRIENDS
+  PUBLIC
+}
+
+type Post {
+  id: ID!
+  text: String
+  imagesSrc: [String!]
+  author: User!
+  authorId: ID!
+  privacy: Privacy!
+  comments: Int!
+  likes: Int!
+  shares: Int!
+  createdAt: Date!
+  updatedAt: Date!
+  # commenter: Comments[]
+  # commentedBy: Comments[]
+  # reacts: React[]
+  # bookmarks: Bookmark[]
+}
+
+type Query {
+  posts(id: ID): [Post!]
+  post(id: ID!): Post!
+}
+
+input CreatePostInput {
+  privacy: Privacy
+  imagesSrc: [String]
+  text: String
+}
+
+type Mutation {
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(id: ID!, updatePostInput: CreatePostInput): Post!
+  removePost(id: ID!): Post!
+}
